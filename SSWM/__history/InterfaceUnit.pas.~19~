@@ -1,0 +1,59 @@
+unit InterfaceUnit;
+
+interface
+
+uses
+  SysUtils, Classes, ActnMan, ActnColorMaps, ImgList, Controls, ExtCtrls, Menus;
+
+type
+  TInterfaceDM = class(TDataModule)
+    BMP24ImageList: TImageList;
+    BalloonHint: TBalloonHint;
+    ProgrammTrayIcon: TTrayIcon;
+    DBActionsImageList: TImageList;
+    ImageList2: TImageList;
+    OrderTypesPopupMenu: TPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    procedure OrderTypesPopupMenuPopup(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  InterfaceDM: TInterfaceDM;
+
+implementation
+
+{$R *.dfm}
+
+uses DataConnectUnit;
+
+procedure TInterfaceDM.N1Click(Sender: TObject);
+begin
+  DataConnectDM.OrderTypesADOTable.FieldByName('IsIncome').AsInteger:=1;
+  DataConnectDM.OrderTypesADOTable.FieldByName('IsOutcome').AsInteger:=0;
+end;
+
+procedure TInterfaceDM.N2Click(Sender: TObject);
+begin
+  DataConnectDM.OrderTypesADOTable.FieldByName('IsIncome').AsInteger:=0;
+  DataConnectDM.OrderTypesADOTable.FieldByName('IsOutcome').AsInteger:=1;
+end;
+
+procedure TInterfaceDM.OrderTypesPopupMenuPopup(Sender: TObject);
+begin
+  N1.Enabled:=False;
+  N2.Enabled:=False;
+  if (DataConnectDM.OrderTypesADOTable.RecordCount>0) then
+  begin
+    N1.Enabled:=True;
+    N2.Enabled:=True;
+  end;
+end;
+
+end.

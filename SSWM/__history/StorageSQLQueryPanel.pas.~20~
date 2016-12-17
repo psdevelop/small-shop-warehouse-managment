@@ -1,0 +1,54 @@
+unit StorageSQLQueryPanel;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Menus, ComCtrls, ToolWin, StdCtrls, ExtCtrls, IBSQL, DataConnectUnit,
+  Buttons, ADODB;
+
+type
+  TSQLQueryPanelForm = class(TForm)
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    StatusBar1: TStatusBar;
+    ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
+    Panel1: TPanel;
+    SQLOperationText: TMemo;
+    Panel2: TPanel;
+    BitBtn1: TBitBtn;
+    OperationStatusText: TMemo;
+    Splitter1: TSplitter;
+    OperatPanelADOC: TADOCommand;
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  SQLQueryPanelForm: TSQLQueryPanelForm;
+
+implementation
+
+{$R *.dfm}
+
+uses InterfaceUnit;
+
+procedure TSQLQueryPanelForm.BitBtn1Click(Sender: TObject);
+begin
+  OperationPanelIBSQL.SQL.Clear;
+  OperationPanelIBSQL.SQL.AddStrings(SQLOperationText.Lines);
+  try
+    OperationPanelIBSQL.ExecQuery;
+  except on E:Exception do
+    begin
+      OperationStatusText.Lines.Add(E.Message);
+      ShowMessage('Ошибка при выполнении! Сообщение: '+E.Message+'.');
+    end
+  end;
+end;
+
+end.

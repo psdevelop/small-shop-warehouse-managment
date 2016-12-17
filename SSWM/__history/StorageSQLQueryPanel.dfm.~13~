@@ -1,0 +1,111 @@
+object SQLQueryPanelForm: TSQLQueryPanelForm
+  Left = 0
+  Top = 0
+  Caption = #1055#1072#1085#1077#1083#1100' SQL-'#1086#1087#1077#1088#1072#1094#1080#1081
+  ClientHeight = 286
+  ClientWidth = 426
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenu1
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 267
+    Width = 426
+    Height = 19
+    Panels = <>
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Top = 0
+    Width = 426
+    Height = 25
+    Caption = 'ToolBar1'
+    Images = InterfaceDM.BMP24ImageList
+    TabOrder = 1
+    object ToolButton1: TToolButton
+      Left = 0
+      Top = 0
+      Caption = 'ToolButton1'
+      ImageIndex = 0
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 25
+    Width = 426
+    Height = 242
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 2
+    object Splitter1: TSplitter
+      Left = 0
+      Top = 65
+      Width = 426
+      Height = 8
+      Cursor = crVSplit
+      Align = alTop
+      Color = clMedGray
+      ParentColor = False
+    end
+    object SQLOperationText: TMemo
+      Left = 0
+      Top = 0
+      Width = 426
+      Height = 65
+      Align = alTop
+      Lines.Strings = (
+        'SELECT * FROM IncomeOrder')
+      TabOrder = 0
+    end
+    object Panel2: TPanel
+      Left = 0
+      Top = 207
+      Width = 426
+      Height = 35
+      Align = alBottom
+      BevelOuter = bvNone
+      TabOrder = 1
+      object BitBtn1: TBitBtn
+        Left = 8
+        Top = 6
+        Width = 137
+        Height = 25
+        Caption = #1042#1099#1087#1086#1083#1085#1080#1090#1100'...'
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
+        TabOrder = 0
+        OnClick = BitBtn1Click
+      end
+    end
+    object OperationStatusText: TMemo
+      Left = 0
+      Top = 73
+      Width = 426
+      Height = 134
+      Align = alClient
+      Lines.Strings = (
+        'SQL Status...'
+        '')
+      TabOrder = 2
+    end
+  end
+  object MainMenu1: TMainMenu
+    Left = 336
+    object N1: TMenuItem
+      Caption = #1042#1099#1087#1086#1083#1085#1080#1090#1100'...'
+    end
+  end
+  object OperationPanelIBSQL: TIBSQL
+    Database = DataConnectDM.IBDatabase1
+    Transaction = DataConnectDM.StorageIBTr
+    Left = 336
+    Top = 48
+  end
+end

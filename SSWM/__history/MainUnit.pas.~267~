@@ -1,0 +1,477 @@
+unit MainUnit;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DataConnectUnit, Menus, ComCtrls, ToolWin, StdCtrls, ExtCtrls,
+  CategoryButtons, ActnMan, ActnColorMaps, ButtonGroup,
+  RibbonLunaStyleActnCtrls, ActnList, CustomizeDlg, ActnCtrls, InterfaceUnit,
+  Tabs, DockTabSet, Grids, DBGrids, Buttons, DBCtrls, Mask, ActnMenus,
+  PlatformDefaultStyleActnCtrls, XPStyleActnCtrls, DBCGrids, DB, DBClient;
+
+type
+  TMainForm = class(TForm)
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    SQLQueryonStorageDBPanel1: TMenuItem;
+    StatusBar1: TStatusBar;
+    ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
+    CategoryPanelGroup1: TCategoryPanelGroup;
+    CategoryPanel1: TCategoryPanel;
+    CategoryPanel2: TCategoryPanel;
+    ButtonGroup2: TButtonGroup;
+    ButtonGroup3: TButtonGroup;
+    Итоги: TCategoryPanel;
+    ButtonGroup1: TButtonGroup;
+    Аналитика: TCategoryPanel;
+    CategoryPanel3: TCategoryPanel;
+    ButtonGroup4: TButtonGroup;
+    ButtonGroup5: TButtonGroup;
+    Panel1: TPanel;
+    MainPageControl: TPageControl;
+    StorageStateTabSheet: TTabSheet;
+    DBGrid1: TDBGrid;
+    Panel2: TPanel;
+    TabSheet2: TTabSheet;
+    DocsTabSheet: TTabSheet;
+    PageControl2: TPageControl;
+    ProductsListTabSheet: TTabSheet;
+    KontragentsTabSheet: TTabSheet;
+    OrderTypesTabSheet: TTabSheet;
+    Panel3: TPanel;
+    DBGrid2: TDBGrid;
+    Panel4: TPanel;
+    BitBtn2: TBitBtn;
+    Panel5: TPanel;
+    BitBtn3: TBitBtn;
+    DBGrid3: TDBGrid;
+    DBGrid4: TDBGrid;
+    Panel6: TPanel;
+    Label1: TLabel;
+    Panel7: TPanel;
+    Panel8: TPanel;
+    Panel9: TPanel;
+    Splitter1: TSplitter;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBGrid5: TDBGrid;
+    Panel10: TPanel;
+    DBGrid6: TDBGrid;
+    Panel11: TPanel;
+    SettingsTabSheet: TTabSheet;
+    Panel12: TPanel;
+    Splitter2: TSplitter;
+    Panel13: TPanel;
+    DBGrid7: TDBGrid;
+    BitBtn6: TBitBtn;
+    Panel14: TPanel;
+    ProductsSearchComboBox: TComboBox;
+    BitBtn5: TBitBtn;
+    Panel15: TPanel;
+    DBLookupComboBox2: TDBLookupComboBox;
+    BitBtn4: TBitBtn;
+    SaleTabSheet: TTabSheet;
+    Panel16: TPanel;
+    SaleProductSearchComboBox: TComboBox;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    DBText1: TDBText;
+    DBText2: TDBText;
+    ButtonGroup7: TButtonGroup;
+    Panel17: TPanel;
+    ButtonGroup6: TButtonGroup;
+    ButtonGroup8: TButtonGroup;
+    Panel18: TPanel;
+    Panel19: TPanel;
+    Label7: TLabel;
+    Label8: TLabel;
+    DBGrid8: TDBGrid;
+    DBText3: TDBText;
+    DBText4: TDBText;
+    Label9: TLabel;
+    Label10: TLabel;
+    BitBtn7: TBitBtn;
+    BitBtn8: TBitBtn;
+    Справочники: TCategoryPanel;
+    ButtonGroup9: TButtonGroup;
+    SaleQuantEdit: TEdit;
+    DBText5: TDBText;
+    ProductTypesTabSheet: TTabSheet;
+    DBGrid9: TDBGrid;
+    Panel20: TPanel;
+    BitBtn9: TBitBtn;
+    Panel21: TPanel;
+    DBLookupComboBox3: TDBLookupComboBox;
+    Label6: TLabel;
+    BitBtn1: TBitBtn;
+    Panel22: TPanel;
+    Splitter3: TSplitter;
+    ProductViewDBImg: TDBImage;
+    Splitter4: TSplitter;
+    Panel23: TPanel;
+    Splitter5: TSplitter;
+    BitBtn11: TBitBtn;
+    SaveAllChangesToolButton: TToolButton;
+    Panel25: TPanel;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    DBEdit6: TDBEdit;
+    DBEdit7: TDBEdit;
+    DBEdit8: TDBEdit;
+    Label16: TLabel;
+    Длина: TLabel;
+    Ширина: TLabel;
+    DBText6: TDBText;
+    DBText7: TDBText;
+    DBText8: TDBText;
+    Label17: TLabel;
+    ProductGroupsTabSheet: TTabSheet;
+    Panel26: TPanel;
+    BitBtn12: TBitBtn;
+    DBGrid10: TDBGrid;
+    DataImportTabSheet: TTabSheet;
+    Panel27: TPanel;
+    DBGrid11: TDBGrid;
+    BitBtn13: TBitBtn;
+    JobsAccountingTabSheet: TTabSheet;
+    JobTypesTabSheet: TTabSheet;
+    Panel28: TPanel;
+    BitBtn14: TBitBtn;
+    DBGrid12: TDBGrid;
+    UsersAccountsTabSheet: TTabSheet;
+    Panel29: TPanel;
+    BitBtn15: TBitBtn;
+    DBGrid13: TDBGrid;
+    PlanningTabSheet: TTabSheet;
+    CategoryPanel4: TCategoryPanel;
+    ButtonGroup10: TButtonGroup;
+    Panel30: TPanel;
+    SizesGroupBox: TGroupBox;
+    Panel24: TPanel;
+    Label14: TLabel;
+    Label12: TLabel;
+    Label11: TLabel;
+    Label15: TLabel;
+    Label13: TLabel;
+    BitBtn10: TBitBtn;
+    DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
+    DBEdit1: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit2: TDBEdit;
+    GroupBox3: TGroupBox;
+    Label18: TLabel;
+    Label19: TLabel;
+    DBLookupComboBox4: TDBLookupComboBox;
+    Label20: TLabel;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    DBLookupComboBox5: TDBLookupComboBox;
+    DBLookupComboBox6: TDBLookupComboBox;
+    N2: TMenuItem;
+    procedure SQLQueryonStorageDBPanel1Click(Sender: TObject);
+    procedure ProductsSearchComboBoxKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure ProductsSearchComboBoxCloseUp(Sender: TObject);
+    procedure SaleProductSearchComboBoxKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure SaleProductSearchComboBoxCloseUp(Sender: TObject);
+    procedure SaleProductSearchComboBoxSelect(Sender: TObject);
+    procedure StorageStateTabSheetShow(Sender: TObject);
+    procedure ButtonGroup1Items0Click(Sender: TObject);
+    procedure ButtonGroup3Items0Click(Sender: TObject);
+    procedure ButtonGroup3Items1Click(Sender: TObject);
+    procedure ButtonGroup2Items1Click(Sender: TObject);
+    procedure ButtonGroup2Items2Click(Sender: TObject);
+    procedure ButtonGroup9Items1Click(Sender: TObject);
+    procedure ButtonGroup9Items0Click(Sender: TObject);
+    procedure ButtonGroup9Items2Click(Sender: TObject);
+    procedure ButtonGroup2Items0Click(Sender: TObject);
+    procedure SaleQuantEditKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure ButtonGroup8Items1Click(Sender: TObject);
+    procedure DocsTabSheetShow(Sender: TObject);
+    procedure DBCtrlGrid1KeyPress(Sender: TObject; var Key: Char);
+    procedure SaveAllChangesToolButtonClick(Sender: TObject);
+    procedure ToolButton1Click(Sender: TObject);
+    procedure ButtonGroup9Items3Click(Sender: TObject);
+    procedure ButtonGroup9Items4Click(Sender: TObject);
+    procedure ButtonGroup9Items5Click(Sender: TObject);
+    procedure ButtonGroup9Items6Click(Sender: TObject);
+    procedure ButtonGroup10Items0Click(Sender: TObject);
+    procedure ButtonGroup10Items1Click(Sender: TObject);
+    procedure ButtonGroup10Items2Click(Sender: TObject);
+    procedure ButtonGroup10Items3Click(Sender: TObject);
+    procedure ButtonGroup10Items4Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  MainForm: TMainForm;
+
+implementation
+
+uses StorageSQLQueryPanel;
+
+{$R *.dfm}
+
+procedure TMainForm.ButtonGroup10Items0Click(Sender: TObject);
+begin
+  StorageStateTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup10Items1Click(Sender: TObject);
+begin
+  JobsAccountingTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup10Items2Click(Sender: TObject);
+begin
+  PlanningTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup10Items3Click(Sender: TObject);
+begin
+  SettingsTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup10Items4Click(Sender: TObject);
+begin
+  DataImportTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup1Items0Click(Sender: TObject);
+begin
+  StorageStateTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup2Items0Click(Sender: TObject);
+begin
+  SaleTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup2Items1Click(Sender: TObject);
+begin
+  DocsTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup2Items2Click(Sender: TObject);
+begin
+  DocsTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup3Items0Click(Sender: TObject);
+begin
+  DocsTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup3Items1Click(Sender: TObject);
+begin
+  DocsTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup8Items1Click(Sender: TObject);
+begin
+  DataConnectDM.LastSaleOrdersADOQ.Active:=False;
+end;
+
+procedure TMainForm.ButtonGroup9Items0Click(Sender: TObject);
+begin
+  KontragentsTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup9Items1Click(Sender: TObject);
+begin
+  ProductsListTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup9Items2Click(Sender: TObject);
+begin
+  OrderTypesTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup9Items3Click(Sender: TObject);
+begin
+  ProductTypesTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup9Items4Click(Sender: TObject);
+begin
+  ProductGroupsTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup9Items5Click(Sender: TObject);
+begin
+  JobTypesTabSheet.Show;
+end;
+
+procedure TMainForm.ButtonGroup9Items6Click(Sender: TObject);
+begin
+  UsersAccountsTabSheet.Show;
+end;
+
+procedure TMainForm.DBCtrlGrid1KeyPress(Sender: TObject; var Key: Char);
+begin
+   //if Integer(Key)=13 then
+   // begin
+   //   DataConnectDM.ProductsPost;
+   // end;
+end;
+
+procedure TMainForm.DocsTabSheetShow(Sender: TObject);
+begin
+  DataConnectDM.ReloadClientList;
+  DataConnectDM.ReloadOrderTable;
+  DataConnectDM.ReloadOrderItemTable;
+end;
+
+procedure TMainForm.N2Click(Sender: TObject);
+begin
+  ShowMessage('Разрешено только пользователю SYSDBA!');
+  DataConnectDM.ClearDB;
+end;
+
+procedure TMainForm.ProductsSearchComboBoxCloseUp(Sender: TObject);
+begin
+  if (ProductsSearchComboBox.ItemIndex>=0) then
+  begin
+    DataConnectDM.ProductSearchADOQ.RecNo:=ProductsSearchComboBox.ItemIndex+1;
+  end;
+end;
+
+procedure TMainForm.ProductsSearchComboBoxKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var i:integer; s:string; coords:TPoint; CurPos:TPoint;
+begin
+  if not (key in [8,46,32,65..90,186,188,190,191,192,219,221,222]) then exit;
+  s:=ProductsSearchComboBox.Text;
+  DataConnectDM.SearchProduct(ProductsSearchComboBox.Text);
+
+  ProductsSearchComboBox.Items.Clear;
+  if DataConnectDM.ProductSearchADOQ.RecordCount>0 then
+  begin
+    DataConnectDM.ProductSearchADOQ.First;
+    for i := 0 to DataConnectDM.ProductSearchADOQ.RecordCount-1 do begin
+      ProductsSearchComboBox.Items.Add(
+        DataConnectDM.ProductSearchADOQ.FieldByName('NAME').AsString);
+      DataConnectDM.ProductSearchADOQ.Next;
+    end;
+  end;
+
+  if (ProductsSearchComboBox.ItemIndex>=0) then
+  begin
+    DataConnectDM.ProductSearchADOQ.RecNo:=ProductsSearchComboBox.ItemIndex+1;
+  end;
+
+  ProductsSearchComboBox.DroppedDown:=true;
+  ProductsSearchComboBox.DropDownCount:=8;
+  ProductsSearchComboBox.Text:=s;
+  ProductsSearchComboBox.SelStart:=length(s);
+end;
+
+procedure TMainForm.SaleProductSearchComboBoxCloseUp(Sender: TObject);
+begin
+  if (SaleProductSearchComboBox.ItemIndex>=0) then
+  begin
+    DataConnectDM.ProductSearchADOQ.RecNo:=SaleProductSearchComboBox.ItemIndex+1;
+  end;
+end;
+
+procedure TMainForm.SaleProductSearchComboBoxKeyUp(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+var i:integer; s:string; coords:TPoint; CurPos:TPoint;
+begin
+  if not (key in [8,46,32,65..90,186,188,190,191,192,219,221,222]) then exit;
+  s:=SaleProductSearchComboBox.Text;
+  //ShowMessage(s);
+  DataConnectDM.SearchProduct(SaleProductSearchComboBox.Text);
+
+  SaleProductSearchComboBox.Items.Clear;
+  if DataConnectDM.ProductSearchADOQ.RecordCount>0 then
+  begin
+    DataConnectDM.ProductSearchADOQ.First;
+    for i := 0 to DataConnectDM.ProductSearchADOQ.RecordCount-1 do begin
+      SaleProductSearchComboBox.Items.Add(
+        DataConnectDM.ProductSearchADOQ.FieldByName('NAME').AsString);
+      DataConnectDM.ProductSearchADOQ.Next;
+    end;
+  end;
+
+  if (SaleProductSearchComboBox.ItemIndex>=0) then
+  begin
+    DataConnectDM.ProductSearchADOQ.RecNo:=SaleProductSearchComboBox.ItemIndex+1;
+  end;
+
+  SaleProductSearchComboBox.DroppedDown:=true;
+  SaleProductSearchComboBox.DropDownCount:=8;
+  SaleProductSearchComboBox.Text:=s;
+  SaleProductSearchComboBox.SelStart:=length(s);
+end;
+
+procedure TMainForm.SaleProductSearchComboBoxSelect(Sender: TObject);
+begin
+if (SaleProductSearchComboBox.ItemIndex>=0) then
+  begin
+    DataConnectDM.ProductSearchADOQ.RecNo:=SaleProductSearchComboBox.ItemIndex+1;
+  end;
+end;
+
+procedure TMainForm.SaleQuantEditKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (key = 13) then
+    begin
+      if not SaleProductSearchComboBox.DroppedDown then
+        begin
+          if (SaleProductSearchComboBox.ItemIndex>=0) then
+            begin
+              if (ProductsSearchComboBox.ItemIndex>=0) then
+                  begin
+                     DataConnectDM.ProductSearchADOQ.RecNo:=ProductsSearchComboBox.ItemIndex+1;
+                  end;
+              if SaleProductSearchComboBox.Text<>'' then
+               begin
+                 DataConnectDM.NewSaleDocItem(
+                  DataConnectDM.ProductSearchADOQ.FieldByName('PRODUCTID').AsInteger,
+                  DataConnectDM.ProductSearchADOQ.FieldByName('SALEPRICE').AsFloat,
+                  StrToFloat(SaleQuantEdit.Text),
+                  DataConnectDM.ProductSearchADOQ.FieldByName('NAME').AsString);
+                 DataConnectDM.ReloadCurrentSale;
+               end;
+            end;
+        end;
+    end;
+end;
+
+procedure TMainForm.SaveAllChangesToolButtonClick(Sender: TObject);
+begin
+  DataConnectDM.PostAllDataSets;
+  DataConnectDM.ReloadAllBaseDS;
+end;
+
+procedure TMainForm.SQLQueryonStorageDBPanel1Click(Sender: TObject);
+begin
+  SQLQueryPanelForm.ShowModal;
+end;
+
+procedure TMainForm.StorageStateTabSheetShow(Sender: TObject);
+begin
+  DataConnectDM.ReloadStorageStateTable;
+end;
+
+procedure TMainForm.ToolButton1Click(Sender: TObject);
+begin
+  DataConnectDM.StorageADOConn.Connected:=
+    not DataConnectDM.StorageADOConn.Connected;
+  if DataConnectDM.StorageADOConn.Connected then
+    DataConnectDM.ReloadAllBaseDS;
+end;
+
+end.

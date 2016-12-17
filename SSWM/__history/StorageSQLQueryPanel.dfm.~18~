@@ -1,0 +1,149 @@
+object SQLQueryPanelForm: TSQLQueryPanelForm
+  Left = 0
+  Top = 0
+  Caption = #1055#1072#1085#1077#1083#1100' SQL-'#1086#1087#1077#1088#1072#1094#1080#1081
+  ClientHeight = 594
+  ClientWidth = 671
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenu1
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 575
+    Width = 671
+    Height = 19
+    Panels = <>
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Top = 0
+    Width = 671
+    Height = 25
+    Caption = 'ToolBar1'
+    Images = InterfaceDM.BMP24ImageList
+    TabOrder = 1
+    object ToolButton1: TToolButton
+      Left = 0
+      Top = 0
+      Caption = 'ToolButton1'
+      ImageIndex = 0
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 25
+    Width = 671
+    Height = 550
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 2
+    ExplicitTop = 152
+    ExplicitHeight = 423
+    object Splitter1: TSplitter
+      Left = 0
+      Top = 265
+      Width = 671
+      Height = 8
+      Cursor = crVSplit
+      Align = alTop
+      Color = clMedGray
+      ParentColor = False
+      ExplicitTop = 65
+      ExplicitWidth = 426
+    end
+    object SQLOperationText: TMemo
+      Left = 0
+      Top = 0
+      Width = 671
+      Height = 265
+      Align = alTop
+      Lines.Strings = (
+        'SELECT * FROM IncomeOrder')
+      TabOrder = 0
+      ExplicitTop = 2
+    end
+    object Panel2: TPanel
+      Left = 0
+      Top = 515
+      Width = 671
+      Height = 35
+      Align = alBottom
+      BevelOuter = bvNone
+      TabOrder = 1
+      object BitBtn1: TBitBtn
+        Left = 8
+        Top = 6
+        Width = 137
+        Height = 25
+        Caption = #1042#1099#1087#1086#1083#1085#1080#1090#1100'...'
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
+        TabOrder = 0
+        OnClick = BitBtn1Click
+      end
+      object BitBtn2: TBitBtn
+        Left = 168
+        Top = 6
+        Width = 177
+        Height = 25
+        Caption = #1042#1099#1087#1086#1083#1085#1080#1090#1100' '#1095#1077#1088#1077#1079' IBX...'
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
+        TabOrder = 1
+      end
+    end
+    object OperationStatusText: TMemo
+      Left = 0
+      Top = 273
+      Width = 671
+      Height = 242
+      Align = alClient
+      Lines.Strings = (
+        'SQL Status...'
+        '')
+      TabOrder = 2
+    end
+  end
+  object MainMenu1: TMainMenu
+    Left = 576
+    object N1: TMenuItem
+      Caption = #1042#1099#1087#1086#1083#1085#1080#1090#1100'...'
+    end
+  end
+  object OperatPanelADOC: TADOCommand
+    Connection = DataConnectDM.StorageADOConn
+    Parameters = <>
+    Left = 576
+    Top = 56
+  end
+  object IBSQL: TIBSQL
+    Database = IBDB
+    Transaction = IBTransact
+    Left = 576
+    Top = 112
+  end
+  object IBDB: TIBDatabase
+    Connected = True
+    DatabaseName = 
+      'C:\Documents and Settings\Admin\'#1052#1086#1080' '#1076#1086#1082#1091#1084#1077#1085#1090#1099'\RAD Studio\Project' +
+      's\StorageShopManagment\STORAGE.FDB'
+    LoginPrompt = False
+    DefaultTransaction = IBTransact
+    Left = 576
+    Top = 168
+  end
+  object IBTransact: TIBTransaction
+    Active = True
+    DefaultDatabase = IBDB
+    Left = 576
+    Top = 224
+  end
+end

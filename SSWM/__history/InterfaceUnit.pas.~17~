@@ -1,0 +1,45 @@
+unit InterfaceUnit;
+
+interface
+
+uses
+  SysUtils, Classes, ActnMan, ActnColorMaps, ImgList, Controls, ExtCtrls, Menus;
+
+type
+  TInterfaceDM = class(TDataModule)
+    BMP24ImageList: TImageList;
+    BalloonHint: TBalloonHint;
+    ProgrammTrayIcon: TTrayIcon;
+    DBActionsImageList: TImageList;
+    ImageList2: TImageList;
+    PopupMenu1: TPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    procedure PopupMenu1Popup(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  InterfaceDM: TInterfaceDM;
+
+implementation
+
+{$R *.dfm}
+
+uses DataConnectUnit;
+
+procedure TInterfaceDM.PopupMenu1Popup(Sender: TObject);
+begin
+  N1.Enabled:=False;
+  N2.Enabled:=False;
+  if (DataConnectDM.OrderTypesADOTable.RecordCount>0) then
+  begin
+    N1.Enabled:=True;
+    N2.Enabled:=True;
+  end;
+end;
+
+end.

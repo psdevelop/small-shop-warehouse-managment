@@ -1,0 +1,1360 @@
+object DataConnectDM: TDataConnectDM
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 800
+  Width = 566
+  object StorageADOConn: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'FILE NAME=C:\DEVELOP(1)\Sources\'#1057#1082#1083#1072#1076' '#1084#1072#1089#1090#1077#1088#1089#1082#1072#1103'\SSM\FireBirdSto' +
+      'rage.udl'
+    LoginPrompt = False
+    AfterConnect = StorageADOConnAfterConnect
+    Left = 48
+    Top = 16
+  end
+  object ProductsDS: TDataSource
+    DataSet = ProductsADOQuery
+    OnUpdateData = OrderItemsDSUpdateData
+    Left = 48
+    Top = 112
+  end
+  object DBActions: TActionList
+    Left = 360
+    Top = 16
+    object NewProductDSI: TDataSetInsert
+      Category = 'Dataset'
+      Caption = #1053#1086#1074#1099#1081' '#1087#1088#1086#1076#1091#1082#1090'...'
+      Hint = 'Insert'
+      ImageIndex = 4
+      OnExecute = NewProductDSIExecute
+      DataSource = ProductsDS
+    end
+    object NewOrderDocAction: TAction
+      Category = 'Dataset'
+      Caption = #1053#1086#1074#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103'...'
+      OnExecute = NewOrderDocActionExecute
+    end
+    object NewOrderItemAction: TAction
+      Category = 'Dataset'
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1087#1086#1079#1080#1094#1080#1102'...'
+      OnExecute = NewOrderItemActionExecute
+    end
+    object NewKontragentDSI: TDataSetInsert
+      Category = 'Dataset'
+      Caption = #1053#1086#1074#1099#1081' '#1082#1086#1085#1090#1088#1072#1075#1077#1085#1090'...'
+      Hint = 'Insert'
+      ImageIndex = 4
+      DataSource = KontragentDS
+    end
+    object NewOrderTypeDSI: TDataSetInsert
+      Category = 'Dataset'
+      Caption = #1053#1086#1074#1099#1081' '#1090#1080#1087'...'
+      Hint = #1053#1086#1074#1099#1081' '#1090#1080#1087'...'
+      ImageIndex = 4
+      DataSource = OrderTypesDS
+    end
+    object NewOrderAction: TAction
+      Category = 'Dataset'
+      Caption = #1044#1086#1073'. '#1087#1086' '#1082#1083#1080#1077#1085#1090#1091'--->>>'
+      OnExecute = NewOrderActionExecute
+    end
+    object NewSysParamDSI: TDataSetInsert
+      Category = 'Dataset'
+      Caption = #1053#1086#1074#1099#1081' '#1087#1072#1088#1072#1084#1077#1090#1088'...'
+      Hint = 'Insert'
+      ImageIndex = 4
+      DataSource = SysPrmsDS
+    end
+    object NewSaleAction: TAction
+      Category = 'Dataset'
+      Caption = '   '#1053#1086#1074#1072#1103' (F7)...'
+      OnExecute = NewSaleActionExecute
+    end
+    object NewSaleItemAction: TAction
+      Category = 'Dataset'
+      Caption = '  '#1057#1083#1077#1076#1091#1102#1097'.'
+    end
+    object DeleteOrderAction: TAction
+      Category = 'Dataset'
+      Caption = #1059#1076#1072#1083#1080#1090#1100' '#1076#1086#1082#1091#1084#1077#1085#1090'...'
+      OnExecute = DeleteOrderActionExecute
+    end
+    object DeleteOrderItemAction: TAction
+      Category = 'Dataset'
+      Caption = #1059#1076#1072#1083#1080#1090#1100' '#1087#1086#1079#1080#1094#1080#1102' '#1076#1086#1082#1091#1084#1077#1085#1090#1072'...'
+      OnExecute = DeleteOrderItemActionExecute
+    end
+    object NewProductTypeDSI: TDataSetInsert
+      Category = 'Dataset'
+      Caption = #1053#1086#1074#1099#1081' '#1090#1080#1087'...'
+      Hint = 'Insert'
+      ImageIndex = 4
+      OnExecute = NewProductTypeDSIExecute
+    end
+    object ProductOpenPictAction: TAction
+      Category = 'Dataset'
+      Caption = #1047#1072#1075#1088#1091#1079#1080#1090#1100' '#1088#1080#1089#1091#1085#1086#1082'...'
+      OnExecute = ProductOpenPictActionExecute
+    end
+    object MovePrToOldAction: TAction
+      Category = 'Dataset'
+      Caption = #1059#1073#1088#1072#1090#1100' '#1074' '#1089#1090#1072#1088#1099#1077'...'
+      OnExecute = MovePrToOldActionExecute
+    end
+    object ImportDBFAction: TAction
+      Category = 'Dataset'
+      Caption = #1048#1084#1087#1086#1088#1090#1080#1088#1086#1074#1072#1090#1100' '#1080#1079' DBF...'
+      OnExecute = ImportDBFActionExecute
+    end
+    object NewJobTypeDSI: TDataSetInsert
+      Category = 'Dataset'
+      Caption = '+'#1042#1080#1076' '#1088#1072#1073#1086#1090'...'
+      Hint = 'Insert'
+      ImageIndex = 4
+      DataSource = JobTypesDS
+    end
+    object NewPersonDSI: TDataSetInsert
+      Category = 'Dataset'
+      Caption = '+'#1059#1095'. '#1079#1072#1087#1080#1089#1100' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1103
+      Hint = 'Insert'
+      ImageIndex = 4
+      DataSource = PersonsDS
+    end
+    object NewPrGroupAction: TAction
+      Category = 'Dataset'
+      Caption = '+'#1043#1088#1091#1087#1087#1072' '#1090#1086#1074#1072#1088#1086#1074'...'
+      OnExecute = NewPrGroupActionExecute
+    end
+    object LinkProductToTypeAction: TAction
+      Category = 'Dataset'
+      Caption = '<-'
+      OnExecute = LinkProductToTypeActionExecute
+    end
+    object LinkProductToGroupAction: TAction
+      Category = 'Dataset'
+      Caption = '<-'
+      OnExecute = LinkProductToGroupActionExecute
+    end
+    object SaveImpToTMPFileAction: TAction
+      Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' DBF '#1074#1086' '#1074#1088#1077#1084#1077#1085#1085#1099#1081' '#1092#1086#1088#1084#1072#1090'...'
+      OnExecute = SaveImpToTMPFileActionExecute
+    end
+    object LoadFromTMPFormat: TAction
+      Caption = #1047#1072#1075#1088#1091#1079#1080#1090#1100' '#1080#1079' '#1074#1088#1077#1084#1077#1085#1085#1086#1075#1086' '#1092#1086#1088#1084#1072#1090#1072'...'
+      OnExecute = LoadFromTMPFormatExecute
+    end
+  end
+  object StorageStateADOQuery: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from Product')
+    Left = 144
+    Top = 16
+    object StorageStateADOQueryPRODUCTID: TIntegerField
+      FieldName = 'PRODUCTID'
+    end
+    object StorageStateADOQueryNAME: TStringField
+      FieldName = 'NAME'
+      Size = 255
+    end
+    object StorageStateADOQueryMEASURE: TStringField
+      FieldName = 'MEASURE'
+      Size = 100
+    end
+    object StorageStateADOQuerySTORAGE_QUANT: TFloatField
+      FieldName = 'STORAGE_QUANT'
+      Precision = 2
+    end
+    object StorageStateADOQueryOUT_SUMM: TFloatField
+      FieldName = 'OUT_SUMM'
+      Precision = 2
+    end
+    object StorageStateADOQueryINC_SUMM: TFloatField
+      FieldName = 'INC_SUMM'
+      Precision = 2
+    end
+    object StorageStateADOQueryOUT_QUANT: TFloatField
+      FieldName = 'OUT_QUANT'
+      Precision = 2
+    end
+    object StorageStateADOQueryINC_QUANT: TFloatField
+      FieldName = 'INC_QUANT'
+      Precision = 2
+    end
+    object StorageStateADOQuerySALEPRICE: TFloatField
+      FieldName = 'SALEPRICE'
+      Precision = 2
+    end
+    object StorageStateADOQueryINCOME_PRICE: TFloatField
+      FieldName = 'INCOME_PRICE'
+      Precision = 2
+    end
+    object StorageStateADOQueryPRODUCTTYPEID: TIntegerField
+      FieldName = 'PRODUCTTYPEID'
+    end
+    object StorageStateADOQueryUNITLENGTH: TFloatField
+      FieldName = 'UNITLENGTH'
+      Precision = 2
+    end
+    object StorageStateADOQueryUNITWIDTH: TFloatField
+      FieldName = 'UNITWIDTH'
+      Precision = 2
+    end
+    object StorageStateADOQueryUNITWEIGTH: TFloatField
+      FieldName = 'UNITWEIGTH'
+      Precision = 2
+    end
+    object StorageStateADOQueryVIEWIMAGE: TBlobField
+      FieldName = 'VIEWIMAGE'
+    end
+    object StorageStateADOQueryISOLD: TIntegerField
+      FieldName = 'ISOLD'
+    end
+    object StorageStateADOQueryUNITNAME: TStringField
+      FieldName = 'UNITNAME'
+      Size = 150
+    end
+    object StorageStateADOQueryADDDATETIME: TDateTimeField
+      FieldName = 'ADDDATETIME'
+    end
+    object StorageStateADOQueryQUANTITYINUNIT: TFloatField
+      FieldName = 'QUANTITYINUNIT'
+      Precision = 2
+    end
+    object StorageStateADOQueryMATERIALNAME: TStringField
+      FieldName = 'MATERIALNAME'
+      Size = 150
+    end
+    object StorageStateADOQueryTEXTURENAME: TStringField
+      FieldName = 'TEXTURENAME'
+      Size = 150
+    end
+    object StorageStateADOQueryCOLORNAME: TStringField
+      FieldName = 'COLORNAME'
+      Size = 30
+    end
+    object StorageStateADOQueryQISSQUARE: TIntegerField
+      FieldName = 'QISSQUARE'
+    end
+  end
+  object NewOrderTypeIDADOQ: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT (MAX(OrderTypeID)+1) as NewOrderTypeID FROM ORDERTYPE')
+    Left = 360
+    Top = 112
+  end
+  object NewOrderDocADOC: TADOCommand
+    CommandText = 
+      'INSERT INTO ORDERDOC (orderid, kontragentid, ordertypeid,adddt) ' +
+      'VALUES (:orid, :kntid, :otid,'#39'now'#39');'
+    Connection = StorageADOConn
+    Parameters = <
+      item
+        Name = 'orid'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'kntid'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'otid'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end>
+    Left = 48
+    Top = 160
+  end
+  object NewOrderItemADOC: TADOCommand
+    CommandText = 
+      'INSERT INTO ORDERITEM (orderitemid, productid, orderid, kontrage' +
+      'ntid, ordertypeid, quantity, price, productname) VALUES (:oritid' +
+      ', :prid, :orid, :kntid, :otid, :quant, :price, :prname);'
+    Connection = StorageADOConn
+    Parameters = <
+      item
+        Name = 'oritid'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'prid'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'orid'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'kntid'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'otid'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'quant'
+        DataType = ftFloat
+        Precision = 24
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'price'
+        DataType = ftFloat
+        Precision = 24
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'prname'
+        DataType = ftString
+        Precision = 255
+        Size = 255
+        Value = Null
+      end>
+    Left = 48
+    Top = 208
+  end
+  object NewKontrAgIDADOQ: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT (MAX(KontragentID)+1) as NewKontragentID FROM KONTRAGENT')
+    Left = 360
+    Top = 256
+  end
+  object KontragentsADOTable: TADOTable
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    BeforeEdit = OrderItemsADOQBeforeEdit
+    BeforePost = KontragentsADOTableBeforePost
+    TableName = 'KONTRAGENT'
+    Left = 48
+    Top = 256
+  end
+  object OrderTypesADOTable: TADOTable
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    BeforeEdit = OrderItemsADOQBeforeEdit
+    BeforePost = OrderTypesADOTableBeforePost
+    TableName = 'ORDERTYPE'
+    Left = 48
+    Top = 352
+  end
+  object KontragentDS: TDataSource
+    DataSet = KontragentsADOTable
+    OnUpdateData = OrderItemsDSUpdateData
+    Left = 48
+    Top = 304
+  end
+  object OrderTypesDS: TDataSource
+    DataSet = OrderTypesADOTable
+    OnUpdateData = OrderItemsDSUpdateData
+    Left = 48
+    Top = 400
+  end
+  object IncomeOrderTypesADOQ: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT * FROM ORDERTYPE WHERE (ISINCOME=1)')
+    Left = 360
+    Top = 312
+  end
+  object IncomeDocTypesDS: TDataSource
+    DataSet = IncomeOrderTypesADOQ
+    Left = 360
+    Top = 360
+  end
+  object OrderDocsADOTable: TADOTable
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    BeforeEdit = OrderItemsADOQBeforeEdit
+    AfterScroll = OrderDocsADOTableAfterScroll
+    IndexFieldNames = 'ORDERTYPEID'
+    MasterFields = 'ORDERTYPEID'
+    MasterSource = OrderTypesDS
+    TableName = 'ORDERLIST'
+    Left = 48
+    Top = 456
+  end
+  object OrderDocsDS: TDataSource
+    DataSet = OrderDocsADOTable
+    OnUpdateData = OrderItemsDSUpdateData
+    Left = 48
+    Top = 504
+  end
+  object ClientListADOQ: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT (COALESCE(LastName,'#39#39')||'#39' '#39'||COALESCE(FirstName,'#39#39')||'
+      #39' '#39'||COALESCE(SurName,'#39#39')) as FullName, KONTRAGENTID '
+      'FROM KONTRAGENT')
+    Left = 144
+    Top = 200
+  end
+  object ClientListDS: TDataSource
+    DataSet = ClientListADOQ
+    OnUpdateData = OrderItemsDSUpdateData
+    Left = 144
+    Top = 248
+  end
+  object OrderItemsADOQ: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    AfterInsert = OrderItemsADOQAfterInsert
+    BeforeEdit = OrderItemsADOQBeforeEdit
+    Parameters = <
+      item
+        Name = 'oid'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end>
+    SQL.Strings = (
+      
+        'select oi.*, pr.MEASURE, pr.UNITNAME, pr.QUANTITYINUNIT from ORD' +
+        'ERITEM oi, PRODUCT pr  '
+      'where (oi.OrderID=:oid) and (oi.PRODUCTID = pr.PRODUCTID)')
+    Left = 144
+    Top = 456
+    object OrderItemsADOQORDERITEMID: TIntegerField
+      FieldName = 'ORDERITEMID'
+    end
+    object OrderItemsADOQPRODUCTID: TIntegerField
+      FieldName = 'PRODUCTID'
+    end
+    object OrderItemsADOQORDERID: TIntegerField
+      FieldName = 'ORDERID'
+    end
+    object OrderItemsADOQKONTRAGENTID: TIntegerField
+      FieldName = 'KONTRAGENTID'
+    end
+    object OrderItemsADOQORDERTYPEID: TIntegerField
+      FieldName = 'ORDERTYPEID'
+    end
+    object OrderItemsADOQPRICE: TFloatField
+      FieldName = 'PRICE'
+    end
+    object OrderItemsADOQITEM_SUMM: TFloatField
+      FieldName = 'ITEM_SUMM'
+    end
+    object OrderItemsADOQPRODUCTNAME: TStringField
+      FieldName = 'PRODUCTNAME'
+      Size = 255
+    end
+    object OrderItemsADOQQUANTITY: TFloatField
+      FieldName = 'QUANTITY'
+      Precision = 2
+    end
+    object OrderItemsADOQMINWIDTH: TFloatField
+      FieldName = 'MINWIDTH'
+    end
+    object OrderItemsADOQMINLENGTH: TFloatField
+      FieldName = 'MINLENGTH'
+    end
+    object OrderItemsADOQUNITLENGTH: TFloatField
+      FieldName = 'UNITLENGTH'
+      Precision = 2
+    end
+    object OrderItemsADOQUNITWIDTH: TFloatField
+      FieldName = 'UNITWIDTH'
+      Precision = 2
+    end
+    object OrderItemsADOQITEM_COMMENT: TStringField
+      FieldName = 'ITEM_COMMENT'
+      Size = 255
+    end
+    object OrderItemsADOQADDDATETIME: TDateTimeField
+      FieldName = 'ADDDATETIME'
+    end
+    object OrderItemsADOQUNITSQUANTITY: TFloatField
+      FieldName = 'UNITSQUANTITY'
+    end
+    object OrderItemsADOQMEASURE: TStringField
+      FieldName = 'MEASURE'
+      Size = 100
+    end
+    object OrderItemsADOQUNITNAME: TStringField
+      FieldName = 'UNITNAME'
+      Size = 150
+    end
+    object OrderItemsADOQQUANTITYINUNIT: TFloatField
+      FieldName = 'QUANTITYINUNIT'
+    end
+  end
+  object OrderItemsDS: TDataSource
+    DataSet = OrderItemsADOQ
+    OnUpdateData = OrderItemsDSUpdateData
+    Left = 144
+    Top = 504
+  end
+  object ProductSearchADOQ: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'pr_like'
+        Attributes = [paNullable]
+        DataType = ftString
+        Precision = 255
+        Size = 255
+        Value = Null
+      end>
+    SQL.Strings = (
+      'SELECT * FROM PRODUCT WHERE (NAME LIKE :pr_like) AND (ISOLD=0)')
+    Left = 48
+    Top = 552
+  end
+  object ParamByNameADOQ: TADOQuery
+    Connection = StorageADOConn
+    Parameters = <
+      item
+        Name = 'paramname'
+        Size = -1
+        Value = Null
+      end>
+    SQL.Strings = (
+      'SELECT * FROM SYSPARAM WHERE (NAME=:paramname)')
+    Left = 144
+    Top = 552
+  end
+  object SysPrmsADOT: TADOTable
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    BeforeEdit = OrderItemsADOQBeforeEdit
+    TableName = 'SYSPARAM'
+    Left = 144
+    Top = 304
+  end
+  object SysPrmsDS: TDataSource
+    DataSet = SysPrmsADOT
+    OnUpdateData = OrderItemsDSUpdateData
+    Left = 144
+    Top = 352
+  end
+  object LastSaleOrdersADOQ: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'BUYERID'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'SALEORDERTYPEID'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end>
+    SQL.Strings = (
+      'SELECT * FROM ORDERDOC WHERE (KONTRAGENTID=:BUYERID) '
+      'AND (ORDERTYPEID=:SALEORDERTYPEID)')
+    Left = 48
+    Top = 608
+  end
+  object LastSalesOrdersDS: TDataSource
+    DataSet = LastSaleOrdersADOQ
+    Left = 144
+    Top = 608
+  end
+  object SaleOrderItemsADOQ: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    BeforeEdit = OrderItemsADOQBeforeEdit
+    Parameters = <
+      item
+        Name = 'orderid'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end>
+    SQL.Strings = (
+      
+        'select * from ORDERITEM oi, Product pr WHERE (oi.ProductID=pr.Pr' +
+        'oductID)'
+      ' AND (oi.ORDERID=:orderid)')
+    Left = 48
+    Top = 656
+  end
+  object SaleOrderItemsDS: TDataSource
+    DataSet = SaleOrderItemsADOQ
+    OnUpdateData = OrderItemsDSUpdateData
+    Left = 144
+    Top = 656
+  end
+  object NewOrderIDADOSP: TADOStoredProc
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    ProcedureName = 'GET_ORDER_ID_GEN'
+    Parameters = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        Direction = pdOutput
+        Size = 4
+        Value = 1010
+      end>
+    Left = 360
+    Top = 160
+  end
+  object NewOrderItemIDADOSP: TADOStoredProc
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    ProcedureName = 'GET_ORDER_ITEM_ID_GEN'
+    Parameters = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        Direction = pdOutput
+        Size = 4
+        Value = 1007
+      end>
+    Left = 360
+    Top = 208
+  end
+  object STORAGESTATEADOQ: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'show_all'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = 0
+      end>
+    SQL.Strings = (
+      'SELECT * FROM PRODUCT'
+      'WHERE (ISOLD=0) OR (1=:show_all)')
+    Left = 360
+    Top = 416
+    object STORAGESTATEADOQPRODUCTID: TIntegerField
+      FieldName = 'PRODUCTID'
+    end
+    object STORAGESTATEADOQNAME: TStringField
+      FieldName = 'NAME'
+      Size = 255
+    end
+    object STORAGESTATEADOQMEASURE: TStringField
+      FieldName = 'MEASURE'
+      Size = 100
+    end
+    object STORAGESTATEADOQSTORAGE_QUANT: TFloatField
+      FieldName = 'STORAGE_QUANT'
+      DisplayFormat = '#,###0.000'
+      EditFormat = '0.000'
+      Precision = 2
+    end
+    object STORAGESTATEADOQOUT_SUMM: TFloatField
+      FieldName = 'OUT_SUMM'
+      DisplayFormat = '#,##0.00 "'#1088'."'
+      EditFormat = '0.00'
+      Precision = 2
+    end
+    object STORAGESTATEADOQINC_SUMM: TFloatField
+      FieldName = 'INC_SUMM'
+      DisplayFormat = '#,##0.00 "'#1088'."'
+      EditFormat = '0.00'
+      Precision = 2
+    end
+    object STORAGESTATEADOQOUT_QUANT: TFloatField
+      FieldName = 'OUT_QUANT'
+      DisplayFormat = '#,###0.000'
+      EditFormat = '0.000'
+      Precision = 2
+    end
+    object STORAGESTATEADOQINC_QUANT: TFloatField
+      FieldName = 'INC_QUANT'
+      DisplayFormat = '#,###0.000'
+      EditFormat = '0.000'
+      Precision = 2
+    end
+    object STORAGESTATEADOQSALEPRICE: TFloatField
+      FieldName = 'SALEPRICE'
+      DisplayFormat = '#,##0.00 "'#1088'."'
+      EditFormat = '0.00'
+      Precision = 2
+    end
+    object STORAGESTATEADOQINCOME_PRICE: TFloatField
+      FieldName = 'INCOME_PRICE'
+      DisplayFormat = '#,##0.00 "'#1088'."'
+      EditFormat = '0.00'
+      Precision = 2
+    end
+    object STORAGESTATEADOQPRODUCTTYPEID: TIntegerField
+      FieldName = 'PRODUCTTYPEID'
+    end
+    object STORAGESTATEADOQUNITLENGTH: TFloatField
+      FieldName = 'UNITLENGTH'
+      Precision = 2
+    end
+    object STORAGESTATEADOQUNITWIDTH: TFloatField
+      FieldName = 'UNITWIDTH'
+      Precision = 2
+    end
+    object STORAGESTATEADOQUNITWEIGTH: TFloatField
+      FieldName = 'UNITWEIGTH'
+      Precision = 2
+    end
+    object STORAGESTATEADOQVIEWIMAGE: TBlobField
+      FieldName = 'VIEWIMAGE'
+    end
+    object STORAGESTATEADOQISOLD: TIntegerField
+      FieldName = 'ISOLD'
+    end
+    object STORAGESTATEADOQUNITNAME: TStringField
+      FieldName = 'UNITNAME'
+      Size = 150
+    end
+    object STORAGESTATEADOQADDDATETIME: TDateTimeField
+      FieldName = 'ADDDATETIME'
+    end
+    object STORAGESTATEADOQQUANTITYINUNIT: TFloatField
+      FieldName = 'QUANTITYINUNIT'
+      Precision = 2
+    end
+    object STORAGESTATEADOQMATERIALNAME: TStringField
+      FieldName = 'MATERIALNAME'
+      Size = 150
+    end
+    object STORAGESTATEADOQTEXTURENAME: TStringField
+      FieldName = 'TEXTURENAME'
+      Size = 150
+    end
+    object STORAGESTATEADOQCOLORNAME: TStringField
+      FieldName = 'COLORNAME'
+      Size = 30
+    end
+    object STORAGESTATEADOQQISSQUARE: TIntegerField
+      FieldName = 'QISSQUARE'
+    end
+    object STORAGESTATEADOQSTORAGE_SUMM: TFloatField
+      FieldName = 'STORAGE_SUMM'
+      DisplayFormat = '#,##0.00 "'#1088'."'
+      EditFormat = '0.00'
+    end
+  end
+  object StorageStateDS: TDataSource
+    DataSet = STORAGESTATEADOQ
+    Left = 360
+    Top = 464
+  end
+  object OrderDeleteADOC: TADOCommand
+    CommandText = 'DELETE FROM ORDERDOC WHERE ORDERID=:orderid'
+    Connection = StorageADOConn
+    Parameters = <
+      item
+        Name = 'orderid'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end>
+    Left = 144
+    Top = 64
+  end
+  object OrderItemDeleteADOC: TADOCommand
+    CommandText = 'DELETE FROM ORDERITEM WHERE ORDERITEMID=:orderitemid'
+    Connection = StorageADOConn
+    Parameters = <
+      item
+        Name = 'orderitemid'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end>
+    Left = 144
+    Top = 112
+  end
+  object ProductSearchDS: TDataSource
+    DataSet = ProductSearchADOQ
+    Left = 360
+    Top = 512
+  end
+  object NewProductADOSP: TADOStoredProc
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    ProcedureName = 'INSERT_PRODUCT_BY_TYPE'
+    Parameters = <
+      item
+        Name = 'PRODUCTTYPEID'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 4
+        Value = Null
+      end
+      item
+        Name = 'PRODUCT_NAME'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 255
+        Value = Null
+      end
+      item
+        Name = 'PRODUCTGROUPID'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 4
+        Value = Null
+      end
+      item
+        Name = 'PRICE'
+        Attributes = [paNullable]
+        DataType = ftFloat
+        Precision = 4
+        Value = Null
+      end
+      item
+        Name = 'MEASURE'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 255
+        Value = Null
+      end
+      item
+        Name = 'PR_ID'
+        DataType = ftInteger
+        Direction = pdOutput
+        Precision = 4
+        Value = Null
+      end>
+    Left = 360
+    Top = 64
+  end
+  object PrTypesADOTable: TADOTable
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    BeforeEdit = OrderItemsADOQBeforeEdit
+    TableDirect = True
+    TableName = 'PRODUCTTYPE'
+    Left = 248
+    Top = 608
+  end
+  object PrTypesDS: TDataSource
+    DataSet = PrTypesADOTable
+    OnUpdateData = OrderItemsDSUpdateData
+    Left = 336
+    Top = 608
+  end
+  object NewPrTypeADOSP: TADOStoredProc
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    ProcedureName = 'INSERT_PRTYPE'
+    Parameters = <
+      item
+        Name = 'PRODUCTTYPENAME'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 255
+        Value = #1053#1086#1074#1099#1081'...'
+      end
+      item
+        Name = 'PR_ID'
+        DataType = ftInteger
+        Direction = pdOutput
+        Precision = 4
+        Value = Null
+      end>
+    Left = 456
+    Top = 16
+  end
+  object ProductsADOQuery: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    BeforeEdit = OrderItemsADOQBeforeEdit
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT Pro.ProductTypeID, Pro.IsInstrument, Pro.IsManufactured, '
+      'Pro.IsMaterial, Pro.Name PrTypeName, '
+      'Pr.ProductID, Pr.UnitLength, Pr.UnitWidth, '
+      'Pr.UnitWeigth,  Pr.Name, Pr.MANUFACTURE_ID,'
+      'Pr.MEASURE_ID, Pr.SALEPRICE, Pr.INCOME_PRICE, '
+      'Pr.Measure, Pr.VIEWIMAGE, Pr.UnitName, Pr.QUANTITYINUNIT, '
+      'Pr.QISSQUARE, Pr.PGROUPNAME, Pr.DESCRIPTION   '
+      'FROM ProductType Pro, Product Pr '
+      'WHERE Pr.ProductTypeID = Pro.ProductTypeID and Pr.ISOLD=0 '
+      'ORDER BY ADDDATETIME DESC ')
+    Left = 48
+    Top = 64
+    object ProductsADOQueryPRODUCTTYPEID: TIntegerField
+      FieldName = 'PRODUCTTYPEID'
+    end
+    object ProductsADOQueryISINSTRUMENT: TIntegerField
+      FieldName = 'ISINSTRUMENT'
+    end
+    object ProductsADOQueryISMANUFACTURED: TIntegerField
+      FieldName = 'ISMANUFACTURED'
+    end
+    object ProductsADOQueryISMATERIAL: TIntegerField
+      FieldName = 'ISMATERIAL'
+    end
+    object ProductsADOQueryPRTYPENAME: TStringField
+      FieldName = 'PRTYPENAME'
+      LookupDataSet = PrTypesADOTable
+      LookupKeyFields = 'PRODUCTTYPEID'
+      LookupResultField = 'PRODUCTTYPEID'
+      KeyFields = 'PRODUCTTYPEID'
+      Size = 255
+    end
+    object ProductsADOQueryPRODUCTID: TIntegerField
+      FieldName = 'PRODUCTID'
+    end
+    object ProductsADOQueryUNITLENGTH: TFloatField
+      FieldName = 'UNITLENGTH'
+    end
+    object ProductsADOQueryUNITWIDTH: TFloatField
+      FieldName = 'UNITWIDTH'
+    end
+    object ProductsADOQueryUNITWEIGTH: TFloatField
+      FieldName = 'UNITWEIGTH'
+    end
+    object ProductsADOQueryNAME: TStringField
+      FieldName = 'NAME'
+      Size = 255
+    end
+    object ProductsADOQuerySALEPRICE: TFloatField
+      FieldName = 'SALEPRICE'
+      DisplayFormat = '#,##0.00 "'#1088'."'
+      EditFormat = '0.00'
+    end
+    object ProductsADOQueryINCOME_PRICE: TFloatField
+      FieldName = 'INCOME_PRICE'
+      DisplayFormat = '#,##0.00 "'#1088'."'
+      EditFormat = '0.00'
+    end
+    object ProductsADOQueryMEASURE: TStringField
+      FieldName = 'MEASURE'
+      Size = 100
+    end
+    object ProductsADOQueryVIEWIMAGE: TBlobField
+      FieldName = 'VIEWIMAGE'
+    end
+    object ProductsADOQueryUNITNAME: TStringField
+      FieldName = 'UNITNAME'
+      Size = 150
+    end
+    object ProductsADOQueryQUANTITYINUNIT: TFloatField
+      FieldName = 'QUANTITYINUNIT'
+    end
+    object ProductsADOQueryQISSQUARE: TIntegerField
+      FieldName = 'QISSQUARE'
+    end
+    object ProductsADOQueryPGROUPNAME: TStringField
+      FieldName = 'PGROUPNAME'
+      Size = 255
+    end
+    object ProductsADOQueryDESCRIPTION: TStringField
+      FieldName = 'DESCRIPTION'
+      Size = 4000
+    end
+    object ProductsADOQueryMEASURE_ID: TIntegerField
+      FieldName = 'MEASURE_ID'
+    end
+    object ProductsADOQueryMANUFACTURE_ID: TIntegerField
+      FieldKind = fkLookup
+      FieldName = 'MANUFACTURE_ID'
+      LookupDataSet = ManufactureADOT
+      LookupKeyFields = 'MANUFACTURE_ID'
+      LookupResultField = 'MANUFACT_NAME'
+      Lookup = True
+    end
+  end
+  object LoadPrPictADOC: TADOCommand
+    CommandText = 'UPDATE PRODUCT SET VIEWIMAGE = :img '#13#10'WHERE PRODUCTID = :pr_id'
+    Connection = StorageADOConn
+    Parameters = <
+      item
+        Name = 'img'
+        Attributes = [paNullable, paLong]
+        DataType = ftVarBytes
+        Precision = 255
+        Size = 2147483647
+        Value = Null
+      end
+      item
+        Name = 'pr_id'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end>
+    Left = 456
+    Top = 64
+  end
+  object MovePrToOldADOC: TADOCommand
+    CommandText = 'UPDATE PRODUCT SET ISOLD=1 WHERE PRODUCTID=:pr_id;'
+    Connection = StorageADOConn
+    Parameters = <
+      item
+        Name = 'pr_id'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end>
+    Left = 456
+    Top = 112
+  end
+  object PrGroupsDS: TDataSource
+    DataSet = PrGroupsADODS
+    OnUpdateData = OrderItemsDSUpdateData
+    Left = 336
+    Top = 656
+  end
+  object PrGroupsADODS: TADODataSet
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    BeforeEdit = OrderItemsADOQBeforeEdit
+    CommandText = 
+      'select *  from PRODUCTTYPE prt, PRODUCTGROUP prg '#13#10'where prt.PRO' +
+      'DUCTTYPEID=prg.PRODUCTTYPEID'
+    Parameters = <>
+    Left = 248
+    Top = 656
+  end
+  object DBFDataDS: TDataSource
+    DataSet = DBFImportADOTable
+    Left = 456
+    Top = 672
+  end
+  object PrGroupByNameADOQ: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'name'
+        DataType = ftString
+        Precision = 255
+        Size = 255
+        Value = Null
+      end>
+    SQL.Strings = (
+      'SELECT * FROM PRODUCTGROUP WHERE GROUPNAME=:name')
+    Left = 248
+    Top = 712
+  end
+  object PrTypeByNameADOQ: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'name'
+        DataType = ftString
+        Precision = 255
+        Size = 255
+        Value = Null
+      end>
+    SQL.Strings = (
+      'SELECT * FROM PRODUCTTYPE WHERE NAME=:name')
+    Left = 48
+    Top = 712
+  end
+  object NewPrGroupADOSP: TADOStoredProc
+    Connection = StorageADOConn
+    ProcedureName = 'INSERT_PRGROUP'
+    Parameters = <
+      item
+        Name = 'PRODUCTTYPEID'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 4
+        Value = Null
+      end
+      item
+        Name = 'GROUPNAME'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 255
+        Value = Null
+      end
+      item
+        Name = 'PR_ID'
+        DataType = ftInteger
+        Direction = pdOutput
+        Precision = 4
+        Value = Null
+      end>
+    Left = 456
+    Top = 160
+  end
+  object DBFImportADOConnection: TADOConnection
+    ConnectionString = 
+      'FILE NAME=C:\Documents and Settings\ADMIN\'#1052#1086#1080' '#1076#1086#1082#1091#1084#1077#1085#1090#1099'\RAD Stud' +
+      'io\Projects\'#1057#1082#1083#1072#1076' '#1084#1072#1089#1090#1077#1088#1089#1082#1072#1103'\SSM\ImportConnect.udl'
+    LoginPrompt = False
+    Provider = 
+      'C:\Documents and Settings\ADMIN\'#1052#1086#1080' '#1076#1086#1082#1091#1084#1077#1085#1090#1099'\RAD Studio\Project' +
+      's\'#1057#1082#1083#1072#1076' '#1084#1072#1089#1090#1077#1088#1089#1082#1072#1103'\SSM\ImportConnect.udl'
+    Left = 456
+    Top = 576
+  end
+  object DBFImportADOTable: TADOTable
+    CursorType = ctStatic
+    Left = 456
+    Top = 624
+  end
+  object ClearAllEmptyProductsADOC: TADOCommand
+    CommandText = 
+      'DELETE  from PRODUCT WHERE PRODUCTID NOT IN (SELECT PRODUCTID FR' +
+      'OM ORDERITEM)'
+    Connection = StorageADOConn
+    Parameters = <>
+    Left = 240
+    Top = 288
+  end
+  object ClearAllEmptyProductsTypes: TADOCommand
+    CommandText = 
+      'DELETE from PRODUCTTYPE WHERE PRODUCTTYPEID NOT '#13#10'IN (SELECT PRO' +
+      'DUCTTYPEID FROM PRODUCT)'
+    Connection = StorageADOConn
+    Parameters = <>
+    Left = 240
+    Top = 384
+  end
+  object ClearAllEmptyProductsGroup: TADOCommand
+    CommandText = 
+      'DELETE from PRODUCTGROUP WHERE PRODUCTGROUPID NOT IN '#13#10'(SELECT P' +
+      'RODUCTGROUPID FROM PRODUCT)'
+    Connection = StorageADOConn
+    Parameters = <>
+    Left = 240
+    Top = 336
+  end
+  object ClearAllOrderItemsADOC: TADOCommand
+    CommandText = 'DELETE  from ORDERITEM'
+    Connection = StorageADOConn
+    Parameters = <>
+    Left = 240
+    Top = 192
+  end
+  object ClearAllEmptyOrdersADOC: TADOCommand
+    CommandText = 
+      'DELETE  from ORDERDOC WHERE ORDERID NOT IN '#13#10'(SELECT ORDERID FRO' +
+      'M ORDERITEM)'
+    Connection = StorageADOConn
+    Parameters = <>
+    Left = 240
+    Top = 240
+  end
+  object JobTypesADOTable: TADOTable
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    BeforeEdit = OrderItemsADOQBeforeEdit
+    TableName = 'JOBTYPE'
+    Left = 248
+    Top = 456
+  end
+  object JobTypesDS: TDataSource
+    DataSet = JobTypesADOTable
+    OnUpdateData = OrderItemsDSUpdateData
+    Left = 248
+    Top = 504
+  end
+  object PersonsADOTable: TADOTable
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    AfterInsert = OrderItemsADOQAfterInsert
+    BeforeEdit = OrderItemsADOQBeforeEdit
+    TableName = 'PERSON'
+    Left = 472
+    Top = 456
+  end
+  object PersonsDS: TDataSource
+    DataSet = PersonsADOTable
+    OnUpdateData = OrderItemsDSUpdateData
+    Left = 472
+    Top = 512
+  end
+  object GetPersonByLoginADOQ: TADOQuery
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'login'
+        DataType = ftString
+        Precision = 50
+        Size = 50
+        Value = #39#39
+      end>
+    SQL.Strings = (
+      
+        'SELECT PERSON.*, (COALESCE(FirstName,'#39#39')||'#39' '#39'||COALESCE(LastName' +
+        ','#39#39')||'
+      
+        #39' '#39'||COALESCE(SurName,'#39#39')) as FullName FROM PERSON WHERE LOGIN=:' +
+        'login')
+    Left = 240
+    Top = 64
+  end
+  object LinkPrToTypeADOC: TADOCommand
+    CommandText = 
+      'UPDATE PRODUCT SET PRODUCTTYPEID=:PT_ID  '#13#10'WHERE PRODUCTID=:PR_I' +
+      'D'
+    Connection = StorageADOConn
+    Parameters = <
+      item
+        Name = 'PT_ID'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'PR_ID'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end>
+    Left = 456
+    Top = 208
+  end
+  object LinkPrToGroupADOC: TADOCommand
+    CommandText = 
+      'UPDATE PRODUCT SET PRODUCTGROUPID=:PG_ID  '#13#10'WHERE PRODUCTID=:PR_' +
+      'ID'
+    Connection = StorageADOConn
+    Parameters = <
+      item
+        Name = 'PG_ID'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'PR_ID'
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end>
+    Left = 456
+    Top = 256
+  end
+  object NewProductExtADOSP: TADOStoredProc
+    Connection = StorageADOConn
+    ProcedureName = 'INSERT_PRODUCT_EXT'
+    Parameters = <
+      item
+        Name = 'PRODUCTTYPEID'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 4
+        Value = Null
+      end
+      item
+        Name = 'PRODUCT_NAME'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 255
+        Value = Null
+      end
+      item
+        Name = 'PRODUCTGROUPID'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 4
+        Value = Null
+      end
+      item
+        Name = 'PRICE'
+        Attributes = [paNullable]
+        DataType = ftFloat
+        Precision = 4
+        Value = Null
+      end
+      item
+        Name = 'MEASURE'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 255
+        Value = Null
+      end
+      item
+        Name = 'DESCRIPTION'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 1000
+        Value = Null
+      end
+      item
+        Name = 'MANUFACTURED'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 255
+        Value = Null
+      end
+      item
+        Name = 'PR_ID'
+        DataType = ftInteger
+        Direction = pdOutput
+        Value = Null
+      end>
+    Left = 240
+    Top = 16
+  end
+  object ADTGFileODlg: TOpenDialog
+    DefaultExt = '*.adtg'
+    Filter = #1044#1072#1085#1085#1099#1077' '#1092#1086#1088#1084#1072#1090#1072' pfADTG|*.adtg|'#1042#1089#1077' '#1092#1072#1081#1083#1099'|*.*'
+    Title = #1042#1099#1073#1077#1088#1080#1090#1077' '#1092#1072#1081#1083' '#1085#1072#1073#1086#1088#1072' '#1076#1072#1085#1085#1099#1093' ADO'
+    Left = 456
+    Top = 304
+  end
+  object ADTGFileSDlg: TSaveDialog
+    DefaultExt = '*.adtg'
+    Filter = #1044#1072#1085#1085#1099#1077' '#1092#1086#1088#1084#1072#1090#1072' pfADTG|*.adtg|'#1042#1089#1077' '#1092#1072#1081#1083#1099'|*.*'
+    Title = #1057#1086#1093#1088#1072#1085#1077#1085#1080#1077' '#1092#1072#1081#1083#1072' '#1085#1072#1073#1086#1088#1072' '#1076#1072#1085#1085#1099#1093' ADO'
+    Left = 456
+    Top = 360
+  end
+  object ManufactureADOT: TADOTable
+    Connection = StorageADOConn
+    CursorType = ctStatic
+    TableName = 'MANUFACTURES'
+    Left = 240
+    Top = 136
+  end
+end

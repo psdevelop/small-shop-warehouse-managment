@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2010.05.05 10:07:32.703.pas,C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\Unit1.pas=C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\MainUnit.pas</Transaction>
+    <Transaction>2010.05.05 10:07:32.703.dfm,C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\Unit1.dfm=C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\MainUnit.dfm</Transaction>
+    <Transaction>2010.05.05 10:07:47.296.dproj,C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\Project1.dproj=C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\StorageShopProject.dproj</Transaction>
+    <Transaction>2010.05.05 10:08:45.843.pas,C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\Unit1.pas=C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\DataConnectUnit.pas</Transaction>
+    <Transaction>2010.05.05 10:08:45.843.dfm,C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\Unit1.dfm=C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\DataConnectUnit.dfm</Transaction>
+    <Transaction>2010.05.05 10:48:09.921.pas,C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\Unit1.pas=C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\StorageSQLQueryPanel.pas</Transaction>
+    <Transaction>2010.05.05 10:48:09.921.dfm,C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\Unit1.dfm=C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\StorageSQLQueryPanel.dfm</Transaction>
+    <Transaction>2010.05.05 11:17:01.000.pas,C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\Unit1.pas=C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\InterfaceUnit.pas</Transaction>
+    <Transaction>2010.05.05 11:17:01.000.dfm,C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\Unit1.dfm=C:\Documents and Settings\Video\Мои документы\RAD Studio\Projects\StorageShopManagment\InterfaceUnit.dfm</Transaction>
+  </Transactions>
+</BorlandProject>
